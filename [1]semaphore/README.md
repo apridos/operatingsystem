@@ -22,6 +22,7 @@ Entitas `x` melakukan operasi `wait()` pada _semaphore_ yang kita miliki sebelum
 | r1 | r2 | r3 | r4 |
 |---|---|---|---|
 | N | y | y | y	|
+| x | - | - | - |
 
 Dalam hal ini entitas `x` menyatakan bahwa ia akan menggunakan sebuah _resource_ yang tersedia.  Maka jumlah _resource_ yang kini tersedia adalah sebanyak 3.
 
@@ -30,14 +31,28 @@ Secara berturut-turut, entitas `y`, `z`, `a` juga melakukan operasi `wait()` pad
 | r1 | r2 | r3 | r4 |
 |---|---|---|---|
 | N | N | N | N |
-
+| x | y | z | a |
 ternyata, entitas `b` juga ingin melakukan operasi `wait()` pada _semaphore_. Karena _semaphore_ bernilai 0, entitas `b` dimasukkan ke dalam sebuah antrian untuk menunggu ada _resource_ yang dapat digunakan.
 
 | q1 | q2 | q3 | ... |
 |---|---|---|---|
 | b | - | - | - |
 
+> `wait()` adalah cara entitas mengatakan `Tunggu! _resource_-nya aku pakai dulu ya, :D`
 
 #### post()
-Lalu kapan _semaphore_ mengalami pertambahan nilai? Operasi `post()` menambahkan nilai pada sebuah _semaphore_. Seperti yang 
- 
+Lalu kapan _semaphore_ mengalami pertambahan nilai? Operasi `post()` menambahkan nilai pada sebuah _semaphore_. Entitas `x` selesai menggunakan _resource_, sehingga ia memanggil operasi `post()`.
+
+| r1 | r2 | r3 | r4 |
+|---|---|---|---|
+| y | N | N | N |
+| - | y | z | a |
+
+> `post()` dapat kamu asumsikan sebagai cara untuk sebuah entitas mengatakan `Hei! terima kasih, aku sudah selesai menggunakan _resource_-nya.`
+
+Sebelumnya entitas `b` yang ditempatkan dalam antrian, kini boleh melanjutkan operasi `wait()` agar dapat menggunakan _resource_.
+
+| r1 | r2 | r3 | r4 |
+|---|---|---|---|
+| N | N | N | N |
+| b | y | z | a |
