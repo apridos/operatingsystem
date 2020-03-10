@@ -32,6 +32,7 @@ Secara berturut-turut, entitas `y`, `z`, `a` juga melakukan operasi `wait()` pad
 |---|---|---|---|
 | N | N | N | N |
 | x | y | z | a |
+
 ternyata, entitas `b` juga ingin melakukan operasi `wait()` pada _semaphore_. Karena _semaphore_ bernilai 0, entitas `b` dimasukkan ke dalam sebuah antrian untuk menunggu ada _resource_ yang dapat digunakan.
 
 | q1 | q2 | q3 | ... |
