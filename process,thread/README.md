@@ -17,3 +17,16 @@ Pembeda antara *thread* dan *process*
 | 1 | berjalan pada **shared memory** | berjalan pada ruang memori yang terpisah satu dengan yang lain |
 | 2 | **thread** merupakan bagian dari **process** | **process** adalah entitas yang dependen (berdiri sendiri) |
 | 3 | **thread** switch mudah dan cepat dilakukan | **process** switch merupakan operasi yang 'mahal' |
+
+#### pthread_t
+Merupakan tipe data yang digunakan sebagai identifikasi terhadap sebuah thread (bersifat unik).
+
+#### pthread()
+
+```
+int pthread_create(pthread_t *thread, pthread_attr_t *attr,
+                   void *(*start_routine) (void *arg), void *arg);
+
+```
+
+Prosedur ini menerima sebanyak minimal 3 
